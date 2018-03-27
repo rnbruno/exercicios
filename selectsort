@@ -1,0 +1,72 @@
+#include <iostream>
+
+
+using namespace std;
+
+void swap(int *x_pt, int *y_pt){
+	int temp = *x_pt;
+	*x_pt = *y_pt;
+	*y_pt = temp;
+}
+void selectionSort(int arr[], int n){
+	int i, j, min_index, comp=1;
+
+		//contador dos índeces, separando vetor ordenado de vetor desordenado
+		for(i=0; i<n-1;i++){
+			//procurando o menor elemento
+			min_index=i; ///indice 0 para comparaçã
+			//o outro contaodr para o segundo elemnto que será comparado
+			for (j=i+1;j<n;j++){
+				if(arr[j]<arr[min_index]) //comparação para ver o menor
+					cout<<"comparação  "<<comp++<<"\n"<<"number"<<arr[j]<<" and " <<arr[min_index]<<"\n";
+					min_index = j; //troca do indice
+			//chamda swap para troca
+			swap(&arr[min_index],&arr[i]);
+
+			}
+
+		}
+
+}
+
+void printArray(int arr[], int size){
+	int i;
+	for(i=0; i<size;i++)
+		cout<<arr[i]<<" ";
+	cout<<"\n";
+
+}
+void textArray(int arr[],int arrC[], int size){
+	int i, a;
+	a=1;
+
+	for(i =0; i<size;i++){
+		if (arr[i]==arrC[i])
+			a++;
+	if (a==size+1)
+		cout<<"Vetor igual \n";
+
+	}
+
+
+}
+
+
+int main(){
+	//first declared the vector of the client
+
+	int arr[] = {35,34,32,25,12,9,4};
+	int arrC[] = {4,9,12,25,32,34,35}; //vector ordened
+	int n= sizeof(arr)/sizeof(arr[0]); //declared the quantie of elements of vector
+	//calling function
+	printArray(arr, n);
+	cout<<"Vetor inicial \n";
+	selectionSort(arr, n);
+	printArray(arr, n);
+
+	textArray(arr,arrC, n);
+
+
+	
+	return 0;
+}
